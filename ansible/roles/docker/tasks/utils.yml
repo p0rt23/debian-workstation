@@ -1,0 +1,12 @@
+---
+- name: Check status of ctop
+  ansible.builtin.stat:
+    path: /usr/local/bin/ctop
+  register: ctop_file
+
+- name: Downloading 'ctop v0.7.7'
+  ansible.builtin.get_url:
+    url: https://github.com/bcicen/ctop/releases/download/v0.7.7/ctop-0.7.7-linux-amd64
+    dest: /usr/local/bin/ctop
+    mode: '755'
+  when: not ctop_file.stat.exists

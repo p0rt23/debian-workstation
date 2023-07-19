@@ -1,0 +1,9 @@
+---
+- name: Setup ubuntu repo for docker
+  ansible.builtin.import_tasks: repo.yml
+
+- name: Install docker packages
+  ansible.builtin.import_tasks: docker.yml
+
+- name: Install docker utils
+  ansible.builtin.import_tasks: utils.yml

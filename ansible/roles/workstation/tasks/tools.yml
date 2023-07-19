@@ -1,5 +1,16 @@
 ---
-- name: Install: git
+- name: "Install: git"
   ansible.builtin.apt:
     name: git
     state: present
+
+- name: "Install: tmux"
+  ansible.builtin.apt:
+    name: tmux
+    state: present
+
+- name: "Install: tpm for tmux"
+  ansible.builtin.shell: |
+    git clone https://github.com/tmux-plugins/tpm /home/vagrant/.tmux/plugins/tpm
+  args:
+    creates: /home/vagrant/.tmux/plugins/tpm

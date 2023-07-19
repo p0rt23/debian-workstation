@@ -1,0 +1,28 @@
+---
+- name: Installing AWS CLI
+  ansible.builtin.apt:
+    name: awscli
+    state: present
+
+- name: Create /root/.aws directory
+  file:
+    path: /root/.aws
+    state: directory
+    mode: '0755'
+
+- name: Copy aws config file
+  ansible.builtin.copy:
+    src: aws_config
+    dest: /root/.aws/config
+    owner: root
+    group: root
+    mode: '0600'
+
+- name: Copy aws credentials file
+  ansible.builtin.copy:
+    src: aws_credentials
+    dest: /root/.aws/credentials
+    force: false
+    owner: root
+    group: root
+    mode: '0600'
