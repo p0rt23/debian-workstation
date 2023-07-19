@@ -1,0 +1,17 @@
+# To be appended to .bashrc
+
+. /usr/local/bin/git-completion.sh
+. /usr/local/bin/git-prompt.sh
+
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWSTASHSTATE=1
+GIT_PS1_SHOWUNTRACKEDFILES=1
+GIT_PS1_SHOWUPSTREAM="auto"
+
+NEWLINE=$'\n'
+export PS1='\[\033[01;032m\]\u@\h:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " (%s)")${NEWLINE}\$ '
+export PATH=~/.cargo/bin:~/bin:$PATH
+export CARGO_TARGET_DIR=/tmp/rust
+
+alias python='python3'
+alias vi='nvim'

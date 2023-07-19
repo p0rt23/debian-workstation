@@ -1,0 +1,3 @@
+---
+- name: Setup OS environment
+  ansible.builtin.import_tasks: environment.yml
