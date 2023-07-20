@@ -50,9 +50,12 @@
   args:
     creates: /home/vagrant/.tmux/plugins/tpm
 
-- name: "Install: neovim"
+- name: "Install: neofetch"
   ansible.builtin.apt:
-    name: neovim
+    name: neofetch
     state: present
 
-
+- name: "Install: fuse3"
+  ansible.builtin.apt:
+    name: fuse3
+    state: present

@@ -1,0 +1,25 @@
+---
+- name: "Installing build-essential"
+  ansible.builtin.apt:
+    name: "build-essential"
+    state: present
+
+- name: Installing golang
+  ansible.builtin.apt:
+    name: golang
+    state: present
+
+- name: Installing nodejs
+  ansible.builtin.apt:
+    name: nodejs
+    state: present
+
+- name: Installing rust
+  ansible.builtin.apt:
+    name: rust-all
+    state: present
+
+- name: Installing cargo
+  ansible.builtin.apt:
+    name: cargo
+    state: present

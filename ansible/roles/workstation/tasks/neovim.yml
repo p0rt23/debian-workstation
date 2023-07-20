@@ -1,0 +1,24 @@
+---
+- name: Check status of nvim
+  ansible.builtin.stat:
+    path: /usr/local/bin/nvim
+  register: nvim_file
+
+- name: Downloading 'nvim.appimage'
+  ansible.builtin.get_url:
+    url: https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+    dest: /usr/local/bin/nvim
+    mode: '755'
+  when: not nvim_file.stat.exists
+
+#- name: "Installing neovim kickstart"
+#  ansible.builtin.shell: |
+#    git clone --depth 1 https://github.com/nvim-lua/kickstart.nvim.git /home/vagrant/.config/nvim;
+#  args:
+#    creates: /home/vagrant/.config/nvim
+
+- name: "Installing AstroNvim for neovim"
+  ansible.builtin.shell: |
+    git clone --depth 1 https://github.com/AstroNvim/AstroNvim /home/vagrant/.config/nvim;
+  args:
+    creates: /home/vagrant/.config/nvim

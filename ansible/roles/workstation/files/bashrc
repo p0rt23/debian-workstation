@@ -14,5 +14,5 @@ export PATH=~/.cargo/bin:~/bin:$PATH
 export CARGO_TARGET_DIR=/tmp/rust
 
 alias python='python3'
-alias vi='nvim'
+alias vi='/usr/local/bin/nvim'
 alias ls='ls --color=auto'

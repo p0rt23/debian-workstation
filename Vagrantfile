@@ -15,7 +15,6 @@ Vagrant.configure("2") do |config|
   config.vm.provision "file", source: "~/.ssh", destination: "~/.ssh"
 
   config.vm.provision "shell", inline: <<-SHELL
-    chown -R vagrant:vagrant /home/vagrant
     export DEBIAN_FRONTEND=noninteractive
     apt-get update && apt-get upgrade -y && apt-get dist-upgrade -y    
     apt-get install -y ansible
@@ -27,4 +26,8 @@ Vagrant.configure("2") do |config|
     ansible.inventory_path = "ansible/production.ini"
     ansible.limit = "localhost"
   end
+
+  config.vm.provision "shell", inline: <<-SHELL
+    chown -R vagrant:vagrant /home/vagrant
+  SHELL
 end

@@ -2,5 +2,11 @@
 - name: Setup OS environment
   ansible.builtin.import_tasks: environment.yml
 
+- name: Setup build environment
+  ansible.builtin.import_tasks: dev.yml
+
 - name: Install packages
   ansible.builtin.import_tasks: packages.yml
+
+- name: Install neovim
+  ansible.builtin.import_tasks: neovim.yml
