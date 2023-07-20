@@ -14,6 +14,11 @@
     name: nodejs
     state: present
 
+- name: Installing npm
+  ansible.builtin.apt:
+    name: npm
+    state: present
+
 - name: Installing rust
   ansible.builtin.apt:
     name: rust-all
