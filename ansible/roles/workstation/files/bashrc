@@ -15,3 +15,4 @@ export CARGO_TARGET_DIR=/tmp/rust
 
 alias python='python3'
 alias vi='nvim'
+alias ls='ls --color=auto'

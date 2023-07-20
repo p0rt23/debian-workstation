@@ -1,0 +1,20 @@
+---
+- name: Install the Microsoft signing key
+  ansible.builtin.apt_key:
+    url: https://packages.microsoft.com/keys/microsoft.asc
+    state: present
+
+- name: Create the APT repository (Debian)
+  ansible.builtin.apt_repository:
+    repo: "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ {{ansible_distribution_release}} main"
+    filename: "azure-cli"
+    state: present
+
+- name: Install the application package (Debian)
+  ansible.builtin.apt:
+    name: "azure-cli"
+    update_cache: yes
+
+- name: Set azure-cli to auto-upgrade
+  ansible.builtin.shell: |
+    az config set auto-upgrade.enable=yes

@@ -1,0 +1,6 @@
+---
+- name: Setup AWS CLI
+  ansible.builtin.import_tasks: aws_cli.yml
+
+- name: Setup Azure CLI
+  ansible.builtin.import_tasks: azure_cli.yml

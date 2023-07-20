@@ -1,22 +1,6 @@
 ---
 # https://docs.docker.com/engine/install/debian/#install-using-the-repository 
 
-## Prerequisites
-- name: "Install: ca-certificates"
-  ansible.builtin.apt:
-    name: ca-certificates
-    state: present
-
-- name: "Install: curl"
-  ansible.builtin.apt:
-    name: curl
-    state: present
-
-- name: "Install: gnupg"
-  ansible.builtin.apt:
-    name: gnupg
-    state: present
-
 - name: "Check if docker key exists"
   ansible.builtin.stat:
     path: /etc/apt/keyrings/docker.gpg

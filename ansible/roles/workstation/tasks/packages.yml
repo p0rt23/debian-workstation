@@ -1,4 +1,19 @@
 ---
+- name: "Install: ca-certificates"
+  ansible.builtin.apt:
+    name: ca-certificates
+    state: present
+
+- name: "Install: curl"
+  ansible.builtin.apt:
+    name: curl
+    state: present
+
+- name: "Install: gnupg"
+  ansible.builtin.apt:
+    name: gnupg
+    state: present
+
 - name: "Install: git"
   ansible.builtin.apt:
     name: git
