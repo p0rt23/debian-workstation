@@ -14,9 +14,29 @@
     name: gnupg
     state: present
 
+- name: "Install: htop"
+  ansible.builtin.apt:
+    name: htop
+    state: present
+
+- name: "Install: tree"
+  ansible.builtin.apt:
+    name: tree
+    state: present
+
+- name: "Install: locate"
+  ansible.builtin.apt:
+    name: locate
+    state: present
+
 - name: "Install: git"
   ansible.builtin.apt:
     name: git
+    state: present
+
+- name: "Install: yamllint"
+  ansible.builtin.apt:
+    name: yamllint
     state: present
 
 - name: "Install: tmux"
@@ -29,3 +49,10 @@
     git clone https://github.com/tmux-plugins/tpm /home/vagrant/.tmux/plugins/tpm
   args:
     creates: /home/vagrant/.tmux/plugins/tpm
+
+- name: "Install: neovim"
+  ansible.builtin.apt:
+    name: neovim
+    state: present
+
+

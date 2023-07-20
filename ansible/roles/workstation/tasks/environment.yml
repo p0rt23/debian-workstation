@@ -11,6 +11,12 @@
     dest: /home/vagrant/.gitconfig
     mode: '0755'
 
+- name: Copy .tmux.conf
+  ansible.builtin.copy:
+    src: tmux.conf
+    dest: /home/vagrant/.tmux.conf
+    mode: '0755'
+
 - name: Copy scripts to /usr/local/bin
   ansible.builtin.copy:
     src: scripts/
