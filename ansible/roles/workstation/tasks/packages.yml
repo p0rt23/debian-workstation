@@ -59,3 +59,8 @@
   ansible.builtin.apt:
     name: fuse3
     state: present
+
+- name: "Install: systemd-timesyncd"
+  ansible.builtin.apt:
+    name: "systemd-timesyncd"
+    state: present
