@@ -18,6 +18,7 @@ Vagrant.configure("2") do |config|
     export DEBIAN_FRONTEND=noninteractive
     apt-get update && apt-get upgrade -y && apt-get dist-upgrade -y    
     apt-get install -y ansible
+    ansible-galaxy install -r /home/vagrant/projects/debian-workstation/ansible/roles/requirements.yml
   SHELL
 
   config.vm.provision "ansible_local" do |ansible|
@@ -28,6 +29,6 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision "shell", inline: <<-SHELL
-    chown -R vagrant:vagrant /home/vagrant
+    find /home/vagrant -path /home/vagrant/projects -prune -false -o -name '*' -exec chown vagrant:vagrant {} ';'
   SHELL
 end
