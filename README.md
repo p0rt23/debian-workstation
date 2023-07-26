@@ -1,5 +1,6 @@
 # debian-workstation
 
 ## TODO
-  * Filesystem colors
-  * aws and azure clients (cloud role)
+
+* Debian
+  - Get [nfs mount](https://developer.hashicorp.com/vagrant/docs/synced-folders/nfs) working 
