@@ -3,14 +3,20 @@
 
 Vagrant.configure("2") do |config|
   config.vm.box = "debian/bookworm64"
-  config.vm.provider "libvirt" do |vb|
-    vb.memory = "8192"
-    vb.cpus = "8"
+  config.vm.provider "libvirt" do |v|
+    v.memory = "8192"
+    v.cpus = "8"
+    v.machine_virtual_size = 75
   end
-
   config.vm.hostname = "debian-workstation"
   config.vm.synced_folder ".", "/vagrant", type: "rsync"
-  
+ 
+  # Resize the filesystem after setting machine_virtual_size
+  config.vm.provision "shell", inline: <<-SHELL
+    growpart /dev/vda 1
+    resize2fs /dev/vda1
+  SHELL
+ 
   config.vm.provision "file", source: "~/.ssh/id_rsa", destination: "~/.ssh/id_rsa"
   config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
 
