@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd /home/mark/projects/debian-workstation
+vagrant box update && vagrant up && vagrant ssh -- -t "tmux new-session -s $USER || tmux attach-session -t $USER"
