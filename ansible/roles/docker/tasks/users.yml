@@ -1,0 +1,7 @@
+---
+- name: "user 'vagrant' in docker group"
+  ansible.builtin.user:
+    name: vagrant
+    groups: docker
+    append: yes
+    state: present

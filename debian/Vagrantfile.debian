@@ -4,8 +4,8 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "debian/bookworm64"
   config.vm.provider "libvirt" do |v|
-    v.memory = "49152"
-    v.cpus = "6"
+    v.memory = "32768"
+    v.cpus = "4"
     v.machine_virtual_size = 75
   end
   config.vm.hostname = "debian-workstation"
