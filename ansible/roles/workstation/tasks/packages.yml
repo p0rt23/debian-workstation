@@ -64,3 +64,8 @@
   ansible.builtin.apt:
     name: "systemd-timesyncd"
     state: present
+
+- name: "Install: unzip"
+  ansible.builtin.apt:
+    name: "unzip"
+    state: present
