@@ -1,0 +1,16 @@
+[character]
+success_symbol = '\$'
+
+[hostname]
+style = 'bold green'
+format = '[$hostname]($style):'
+
+[username]
+style_user = 'bold green'
+format = '[$user@]($style)'
+
+[directory]
+style = 'bold blue'
+
+[aws]
+disabled = true

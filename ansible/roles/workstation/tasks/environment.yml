@@ -17,8 +17,8 @@
     dest: /home/vagrant/.tmux.conf
     mode: '0755'
 
-- name: Copy scripts to /usr/local/bin
+- name: Copy starship.toml
   ansible.builtin.copy:
-    src: scripts/
-    dest: /usr/local/bin
+    src: starship.toml
+    dest: /home/vagrant/.config/starship.toml
     mode: '0755'
