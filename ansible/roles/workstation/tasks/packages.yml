@@ -75,3 +75,8 @@
     curl -sS https://starship.rs/install.sh | sh -s -- --yes
   args:
     creates: /usr/local/bin/starship
+
+- name: "Install: batcat"
+  ansible.builtin.apt:
+    name: "bat"
+    state: present

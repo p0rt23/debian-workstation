@@ -1,18 +1,18 @@
-add_newline = false
-
 [character]
-success_symbol = '\$'
+#success_symbol = '\$'
 
 [hostname]
+disabled = true
 style = 'bold green'
 format = '[$hostname]($style):'
 
 [username]
+disabled = true
 style_user = 'bold green'
 format = '[$user@]($style)'
 
 [directory]
-style = 'bold blue'
+#style = 'bold blue'
 
 [aws]
 disabled = true

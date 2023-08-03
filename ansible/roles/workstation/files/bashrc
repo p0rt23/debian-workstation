@@ -8,5 +8,6 @@ alias vi='/usr/local/bin/nvim'
 alias ls='ls --color=auto'
 alias sudo='sudo ' # Use aliases with sudo
 alias ctop='TERM="${TERM/#tmux/screen}" ctop'
+alias cat='/usr/bin/batcat'
 
 eval "$(starship init bash)"
