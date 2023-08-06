@@ -17,6 +17,12 @@
     dest: /home/vagrant/.tmux.conf
     mode: '0755'
 
+- name: Create .config dir
+  ansible.builtin.file:
+    path: /home/vagrant/.config
+    state: directory
+    mode: '0755'
+
 - name: Copy starship.toml
   ansible.builtin.copy:
     src: starship.toml

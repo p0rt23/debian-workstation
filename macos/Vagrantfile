@@ -1,0 +1,43 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+
+# vagrant plugin install vagrant-parallels
+# vagrant plugin update
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "bento/debian-12"
+  config.vm.provider "parallels" do |v|
+    v.memory = "4096"
+    v.cpus = "4"
+    v.update_guest_tools = true
+    v.customize "post-import", ["set", :id, "--nested-virt", "on"]
+  end
+  
+  config.vm.network "private_network", ip: "192.168.56.5"
+
+  config.vm.hostname = "debian-workstation"
+  config.vm.synced_folder ".", "/vagrant"
+  config.vm.synced_folder "../../Projects", "/home/vagrant/projects"
+  
+  config.vm.provision "file", source: "~/.ssh/id_rsa", destination: "~/.ssh/id_rsa"
+  config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
+
+  config.vm.provision "shell", inline: <<-SHELL
+    export DEBIAN_FRONTEND=noninteractive
+    apt-get update && apt-get upgrade -y && apt-get dist-upgrade -y    
+    apt-get install -y ansible
+    ansible-galaxy install -r /vagrant/ansible/roles/requirements.yml
+  SHELL
+
+  config.vm.provision "ansible_local" do |ansible|
+    ansible.become = true
+    ansible.playbook = "ansible/site.yml"
+    ansible.inventory_path = "ansible/production.ini"
+    ansible.limit = "localhost"
+  end
+
+  config.vm.provision "shell", inline: <<-SHELL
+    find /home/vagrant -path /home/vagrant/projects -prune -false -o -name '*' -exec chown vagrant:vagrant {} ';'
+  SHELL
+end
