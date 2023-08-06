@@ -1,7 +1,9 @@
 # To be appended to .bashrc
 
 export PATH=~/bin:$PATH
-export CARGO_TARGET_DIR=/tmp/rust
+
+# Was recommended to not build on a virutalbox mount (/home/vagrant)
+#export CARGO_TARGET_DIR=/tmp/rust
 
 alias python='python3'
 alias vi='/usr/local/bin/nvim'
