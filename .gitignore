@@ -1,2 +1,3 @@
 .vagrant/
 /Vagrantfile
+/ansible/localhost.yml

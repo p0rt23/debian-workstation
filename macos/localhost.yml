@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  roles:
+    - workstation
+    - gnome
+    - docker
+    - cloud
