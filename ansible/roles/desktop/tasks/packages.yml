@@ -1,0 +1,10 @@
+---
+- name: "Install: cinnamon desktop"
+  ansible.builtin.apt:
+    name: cinnamon-desktop-environment
+    state: present
+
+- name: "Install: firefox"
+  ansible.builtin.apt:
+    name: firefox-esr
+    state: present
