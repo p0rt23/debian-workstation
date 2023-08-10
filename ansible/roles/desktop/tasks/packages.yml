@@ -1,7 +1,22 @@
 ---
-- name: "Install: cinnamon desktop"
+- name: "Install: X-Server"
   ansible.builtin.apt:
-    name: cinnamon-desktop-environment
+    name: xorg 
+    state: present
+
+- name: "Install: Display Manager"
+  ansible.builtin.apt:
+    name: gdm3 
+    state: absent
+
+- name: "Install: Display Manager"
+  ansible.builtin.apt:
+    name: lightdm 
+    state: present
+
+- name: "Install: Window Manager"
+  ansible.builtin.apt:
+    name: i3
     state: present
 
 - name: "Install: firefox"

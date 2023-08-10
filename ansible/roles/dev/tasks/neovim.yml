@@ -11,12 +11,6 @@
     mode: '755'
   when: not nvim_file.stat.exists
 
-#- name: "Installing neovim kickstart"
-#  ansible.builtin.shell: |
-#    git clone --depth 1 https://github.com/nvim-lua/kickstart.nvim.git /home/vagrant/.config/nvim;
-#  args:
-#    creates: /home/vagrant/.config/nvim
-
 - name: "AstroNvim dep: treesitter-cli"
   community.general.npm:
     name: tree-sitter-cli
@@ -45,12 +39,12 @@
 
 - name: "Installing AstroNvim for neovim"
   ansible.builtin.shell: |
-    git clone --depth 1 https://github.com/AstroNvim/AstroNvim /home/vagrant/.config/nvim;
+    git clone --depth 1 https://github.com/AstroNvim/AstroNvim "{{ home_dir }}/.config/nvim;"
   args:
-    creates: /home/vagrant/.config/nvim
+    creates: "{{ home_dir }}/.config/nvim"
 
 - name: "Installing user config for neovim"
   ansible.builtin.shell: |
-    git clone https://github.com/p0rt23/astronvim_config.git /home/vagrant/.config/nvim/lua/user;
+    git clone https://github.com/p0rt23/astronvim_config.git "{{ home_dir }}/.config/nvim/lua/user;"
   args:
-    creates: /home/vagrant/.config/nvim/lua/user     
+    creates: "{{ home_dir }}/.config/nvim/lua/user"

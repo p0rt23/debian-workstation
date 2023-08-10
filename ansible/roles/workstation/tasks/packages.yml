@@ -46,9 +46,9 @@
 
 - name: "Install: tpm for tmux"
   ansible.builtin.shell: |
-    git clone https://github.com/tmux-plugins/tpm /home/vagrant/.tmux/plugins/tpm
+    git clone https://github.com/tmux-plugins/tpm "{{ home_dir }}/.tmux/plugins/tpm"
   args:
-    creates: /home/vagrant/.tmux/plugins/tpm
+    creates: "{{ home_dir }}/.tmux/plugins/tpm"
 
 - name: "Install: neofetch"
   ansible.builtin.apt:

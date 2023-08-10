@@ -4,16 +4,16 @@
     name: awscli
     state: present
 
-- name: "Create {{ home_directory }}/.aws directory"
+- name: "Create {{ home_dir }}/.aws directory"
   file:
-    path: "{{ home_directory }}/.aws"
+    path: "{{ home_dir }}/.aws"
     state: directory
     mode: '0755'
 
 - name: Copy aws config file
   ansible.builtin.copy:
     src: aws_config
-    dest: "{{ home_directory }}/.aws/config"
+    dest: "{{ home_dir }}/.aws/config"
     owner: "{{ user }}"
     group: "{{ group }}"
     mode: '0600'
@@ -21,7 +21,7 @@
 - name: Copy aws credentials file
   ansible.builtin.copy:
     src: aws_credentials
-    dest: "{{ home_directory }}/.aws/credentials"
+    dest: "{{ home_dir }}/.aws/credentials"
     force: false
     owner: "{{ user }}"
     group: "{{ group }}"

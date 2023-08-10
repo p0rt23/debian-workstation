@@ -46,11 +46,11 @@
   when: cargo_exists is failed
   shell: /tmp/sh.rustup.rs -y
 
-- name: Copy /root/.cargo to /home/vagrant
+- name: Copy /root/.cargo to /home/
   when: cargo_exists is failed
   ansible.builtin.copy:
     remote_src: true
     src: /root/.cargo
-    dest: /home/vagrant
+    dest: "{{ home_dir }}"
     owner: vagrant
     group: vagrant
