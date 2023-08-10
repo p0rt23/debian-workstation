@@ -2,6 +2,7 @@
 - hosts: localhost
   roles:
     - workstation
-    - gnome
+    - dev
+    - desktop
     - docker
     - cloud
