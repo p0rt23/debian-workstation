@@ -1,0 +1,5 @@
+---
+- name: "Install: KDE"
+  ansible.builtin.apt:
+    name: task-kde-desktop 
+    state: present
