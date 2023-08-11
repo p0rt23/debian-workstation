@@ -52,5 +52,5 @@
 - name: Add nvim alias
   ansible.builtin.lineinfile:
     path: "{{ home_dir }}/.bashrc"
-    search_string: '# alias vi='/usr/local/bin/nvim'
-    line: 'alias vi='/usr/local/bin/nvim'
+    search_string: "# alias vi='/usr/local/bin/nvim'"
+    line: "alias vi='/usr/local/bin/nvim'"
