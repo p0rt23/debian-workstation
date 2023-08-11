@@ -6,11 +6,6 @@
 
 - name: "Install: Display Manager"
   ansible.builtin.apt:
-    name: gdm3 
-    state: absent
-
-- name: "Install: Display Manager"
-  ansible.builtin.apt:
     name: lightdm 
     state: present
 
@@ -22,4 +17,14 @@
 - name: "Install: firefox"
   ansible.builtin.apt:
     name: firefox-esr
+    state: present
+
+- name: "Install: kitty"
+  ansible.builtin.apt:
+    name: kitty
+    state: present
+
+- name: "Install: rofi"
+  ansible.builtin.apt:
+    name: rofi
     state: present

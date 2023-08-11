@@ -39,12 +39,18 @@
 
 - name: "Installing AstroNvim for neovim"
   ansible.builtin.shell: |
-    git clone --depth 1 https://github.com/AstroNvim/AstroNvim "{{ home_dir }}/.config/nvim;"
+    git clone --depth 1 https://github.com/AstroNvim/AstroNvim "{{ home_dir }}/.config/nvim"
   args:
     creates: "{{ home_dir }}/.config/nvim"
 
 - name: "Installing user config for neovim"
   ansible.builtin.shell: |
-    git clone https://github.com/p0rt23/astronvim_config.git "{{ home_dir }}/.config/nvim/lua/user;"
+    git clone https://github.com/p0rt23/astronvim_config.git "{{ home_dir }}/.config/nvim/lua/user"
   args:
     creates: "{{ home_dir }}/.config/nvim/lua/user"
+
+- name: Add nvim alias
+  ansible.builtin.lineinfile:
+    path: "{{ home_dir }}/.bashrc"
+    search_string: '# alias vi='/usr/local/bin/nvim'
+    line: 'alias vi='/usr/local/bin/nvim'
