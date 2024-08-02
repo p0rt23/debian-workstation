@@ -1,0 +1,5 @@
+---
+- name: "Install: GNOME Desktop"
+  ansible.builtin.apt:
+    name: task-gnome-desktop 
+    state: present
