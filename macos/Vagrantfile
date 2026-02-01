@@ -1,24 +1,27 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-
-# vagrant plugin install vagrant-parallels
-# vagrant plugin update
-
 Vagrant.configure("2") do |config|
-  config.vm.box = "bento/debian-12.5"
-  config.vm.provider "parallels" do |v|
-    v.memory = "4096"
-    v.cpus = "4"
-    v.update_guest_tools = true
-    v.customize "post-import", ["set", :id, "--nested-virt", "on"]
-    v.customize "post-import", ["set", :id, "--3d-accelerate", "highest"]
+  config.vm.box = "cloud-image/debian-13"
+
+  config.vagrant.plugins = "vagrant-qemu"
+  config.vm.provider :qemu do |qemu|
+    qemu.machine = "virt,accel=hvf,highmem=on"
+    qemu.cpu = "max"
+    qemu.smp = "4"
+    qemu.cpu_affinity = "0-3"
+    qemu.memory = "4G"
   end
-  
+
   config.vm.hostname = "debian-workstation"
-  config.vm.synced_folder ".", "/vagrant"
-  config.vm.synced_folder "../../Projects", "/home/vagrant/projects"
-  
+  config.vm.synced_folder ".", "/vagrant", type: "rsync"
+ 
+  # Resize the filesystem after setting machine_virtual_size
+  #config.vm.provision "shell", inline: <<-SHELL
+  #  growpart /dev/vda 1
+  #  resize2fs /dev/vda1
+  #SHELL
+ 
   config.vm.provision "file", source: "~/.ssh/id_rsa", destination: "~/.ssh/id_rsa"
   config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
 
@@ -37,6 +40,6 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision "shell", inline: <<-SHELL
-    find /home/vagrant -path /home/vagrant/projects -prune -false -o -name '*' -exec chown vagrant:vagrant {} ';'
+    chown -R vagrant:vagrant /home/vagrant
   SHELL
 end

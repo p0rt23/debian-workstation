@@ -9,15 +9,15 @@
 #    name: golang
 #    state: present
 
-#- name: Installing nodejs
-#  ansible.builtin.apt:
-#    name: nodejs
-#    state: present
+- name: Installing nodejs
+  ansible.builtin.apt:
+    name: nodejs
+    state: present
 
-#- name: Installing npm
-#  ansible.builtin.apt:
-#    name: npm
-#    state: present
+- name: Installing npm
+  ansible.builtin.apt:
+    name: npm
+    state: present
 
 - name: Installing python3-venv
   ansible.builtin.apt:

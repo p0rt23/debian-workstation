@@ -23,8 +23,8 @@
     state: directory
     mode: '0755'
 
-#- name: Copy starship.toml
-#  ansible.builtin.copy:
-#    src: starship.toml
-#    dest: "{{ home_dir }}/.config/starship.toml"
-#    mode: '0755'
+- name: Copy starship.toml
+  ansible.builtin.copy:
+    src: starship.toml
+    dest: "{{ home_dir }}/.config/starship.toml"
+    mode: '0755'

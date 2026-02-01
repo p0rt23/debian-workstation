@@ -50,9 +50,9 @@
   args:
     creates: "{{ home_dir }}/.tmux/plugins/tpm"
 
-- name: "Install: neofetch"
+- name: "Install: fastfetch"
   ansible.builtin.apt:
-    name: neofetch
+    name: fastfetch
     state: present
 
 - name: "Install: fuse3"
@@ -70,11 +70,11 @@
     name: "unzip"
     state: present
 
-#- name: "Install: starship"
-#  ansible.builtin.shell: |
-#    curl -sS https://starship.rs/install.sh | sh -s -- --yes
-#  args:
-#    creates: /usr/local/bin/starship
+- name: "Install: starship"
+  ansible.builtin.shell: |
+    curl -sS https://starship.rs/install.sh | sh -s -- --yes
+  args:
+    creates: /usr/local/bin/starship
 
 - name: "Install: batcat"
   ansible.builtin.apt:

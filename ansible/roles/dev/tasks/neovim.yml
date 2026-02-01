@@ -1,15 +1,7 @@
 ---
-- name: Check status of nvim
-  ansible.builtin.stat:
-    path: /usr/local/bin/nvim
-  register: nvim_file
-
-- name: Downloading 'nvim.appimage'
-  ansible.builtin.get_url:
-    url: https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
-    dest: /usr/local/bin/nvim
-    mode: '755'
-  when: not nvim_file.stat.exists
+- name: "Neovim"
+  ansible.builtin.apt:
+    name: neovim
 
 - name: "AstroNvim dep: treesitter-cli"
   community.general.npm:
@@ -18,24 +10,11 @@
 
 - name: "AstroNvim dep: ripgrep"
   ansible.builtin.apt:
-    deb: https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
-  ignore_errors: true
-
-#- name: 'AstroNvim dep: lazygit'
-#  ansible.builtin.shell: |
-#    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-#    curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
-#    tar xf lazygit.tar.gz lazygit
-#    install lazygit /usr/local/bin
-#  creates: /usr/local/bin/lazygit
+    name: ripgrep
 
 - name: "AstroNvim dep: go DiskUsage"
   ansible.builtin.apt:
     name: gdu
-
-- name: "AstroNvim dep: bottom"
-  ansible.builtin.apt:
-    deb: https://github.com/ClementTsang/bottom/releases/download/0.9.3/bottom_0.9.3_amd64.deb
 
 - name: "Installing AstroNvim for neovim"
   ansible.builtin.shell: |
@@ -49,14 +28,8 @@
     dest: "{{ home_dir }}/.config/nvim/lua/community.lua"
     mode: '0755'
 
-#- name: "Installing user config for neovim"
-#  ansible.builtin.shell: |
-#  git clone https://github.com/p0rt23/astronvim_config.git "{{ home_dir }}/.config/nvim/lua/user"
-#  args:
-#    creates: "{{ home_dir }}/.config/nvim/lua/user"
-
 - name: Add nvim alias
   ansible.builtin.lineinfile:
     path: "{{ home_dir }}/.bashrc"
-    search_string: "# alias vi='/usr/local/bin/nvim'"
-    line: "alias vi='/usr/local/bin/nvim'"
+    search_string: "# alias vi='/usr/bin/nvim'"
+    line: "alias vi='/usr/bin/nvim'"
