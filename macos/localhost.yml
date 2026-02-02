@@ -3,6 +3,7 @@
   roles:
     - workstation
     - dev
-    - desktop
-    - docker
-    - cloud
+    - tailscale
+    #    - desktop
+    #    - docker
+    #    - cloud

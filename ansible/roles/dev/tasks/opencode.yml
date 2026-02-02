@@ -1,0 +1,14 @@
+---
+- name: "Install: opencode"
+  ansible.builtin.shell: |
+    curl -fsSL https://opencode.ai/install | bash
+  args:
+    creates: /home/vagrant/.opencode/bin/opencode
+
+- name: Copy opencode.json 
+  ansible.builtin.copy:
+    src: opencode.json
+    dest: "{{ home_dir }}/.config/opencode/opencode.json"
+    mode: '0755'
+
+

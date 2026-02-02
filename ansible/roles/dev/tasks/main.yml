@@ -4,3 +4,6 @@
 
 - name: Install neovim
   ansible.builtin.import_tasks: neovim.yml
+
+- name: Install opencode
+  ansible.builtin.import_tasks: opencode.yml
