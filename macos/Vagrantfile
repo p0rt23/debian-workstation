@@ -5,6 +5,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "cloud-image/debian-13"
 
   config.vagrant.plugins = "vagrant-qemu"
+  config.vagrant.plugins = "vagrant-sshfs"
   config.vm.provider :qemu do |qemu|
     qemu.machine = "virt,accel=hvf,highmem=on"
     qemu.cpu = "max"
@@ -14,6 +15,10 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.hostname = "debian-workstation"
+  
+  config.vm.synced_folder "/Users/mark.smith/projects", "/home/vagrant/projects",
+    type: "sshfs"
+
   config.vm.synced_folder ".", "/vagrant", type: "rsync"
  
   # Resize the filesystem after setting machine_virtual_size
