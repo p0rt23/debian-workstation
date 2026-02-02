@@ -5,6 +5,12 @@
   args:
     creates: /home/vagrant/.opencode/bin/opencode
 
+- name: Ensure the opencode config directory exists
+  ansible.builtin.file:
+    path: "{{ home_dir }}/.config/opencode"
+    state: directory
+    mode: '0755' 
+
 - name: Copy opencode.json 
   ansible.builtin.copy:
     src: opencode.json
